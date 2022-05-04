@@ -1,0 +1,29 @@
+rule all:
+    input:
+        "data/processed/featured.csv",
+        "data/interim/clean.csv",
+        "data/interim/initial.csv"
+
+rule add_features:
+    input:
+        "data/interim/clean.csv"
+    output:
+        "data/processed/featured.csv"
+    shell:
+        "python -m src.features.add_features {input} {output}"
+
+rule clean_data:
+    input:
+        "data/interim/initial.csv"
+    output:
+        "data/interim/clean.csv"
+    shell:
+        "python -m src.data.clean_data {input} {output}"
+
+rule select_region:
+    input:
+        "data/raw/initial.json"
+    output:
+        "data/interim/initial.csv"
+    shell:
+        "python -m src.data.select_region {input} {output}"
