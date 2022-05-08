@@ -1,0 +1,42 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: poetry run select_region data_dvc/raw/initial.json data_dvc/interim/initial.csv
+    deps:
+    - path: data_dvc/raw/initial.json
+      md5: 3cebb6052fb566c3ffbf1ec74d9df81c
+      size: 59
+    outs:
+    - path: data_dvc/interim/initial.csv
+      md5: 4c93a45b72183ba2720b54bec1a00c60
+      size: 18
+  select_region:
+    cmd: poetry run select_region data_dvc/raw/initial.json data_dvc/interim/initial.csv
+    deps:
+    - path: data_dvc/raw/initial.json
+      md5: 3cebb6052fb566c3ffbf1ec74d9df81c
+      size: 59
+    outs:
+    - path: data_dvc/interim/initial.csv
+      md5: 4c93a45b72183ba2720b54bec1a00c60
+      size: 18
+  clean_data:
+    cmd: poetry run clean_data data_dvc/interim/initial.csv data_dvc/interim/cleaned.csv
+    deps:
+    - path: data_dvc/interim/initial.csv
+      md5: 4c93a45b72183ba2720b54bec1a00c60
+      size: 18
+    outs:
+    - path: data_dvc/interim/cleaned.csv
+      md5: 48f5f85c0fe212d0b1d89493763c2ad1
+      size: 22
+  add_features:
+    cmd: poetry run add_features data_dvc/interim/cleaned.csv data_dvc/processed/featured.csv
+    deps:
+    - path: data_dvc/interim/cleaned.csv
+      md5: 48f5f85c0fe212d0b1d89493763c2ad1
+      size: 22
+    outs:
+    - path: data_dvc/processed/featured.csv
+      md5: d3b7d9f3e26931e1a87b71a088068007
+      size: 33

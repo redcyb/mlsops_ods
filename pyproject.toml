@@ -4,6 +4,10 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 
+packages = [
+    { include = "src" },
+]
+
 [tool.poetry.dependencies]
 python = "^3.9"
 snakemake = "^7.6.1"
@@ -17,6 +21,11 @@ dvc = {extras = ["gdrive"], version = "^2.10.2"}
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"
 flake8 = "^4.0.1"
+
+[tool.poetry.scripts]
+select_region = "src.data.select_region:_select_region"
+clean_data = "src.data.clean_data:_clean_data"
+add_features = "src.features.add_features:_add_features"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
