@@ -1,0 +1,4 @@
+outs:
+- md5: 3cebb6052fb566c3ffbf1ec74d9df81c
+  size: 59
+  path: initial.json
