@@ -1,4 +1,5 @@
 [core]
     remote = dev_drive
+    autostage = true
 ['remote "dev_drive"']
     url = gdrive://1iglJIWUTzF1bESWFqUZGX5eWuxLiOGUs/dvcstore
